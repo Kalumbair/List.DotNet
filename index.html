@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<head>
+    <title>Сообщения</title>
+</head>
+<body>
+    <h1>Список сообщений</h1>
+    <ul id="list">
+
+    </ul>
+    <script>
+        const todo_list = document.querySelector('#list');
+        fetch('/list')
+        .then(res => res.json())
+        .then(result => {
+            for(let e of result)
+            {
+                if(e == null)
+                    continue;
+                let a = document.createElement('li');
+                a.innerHTML = `<p>${e.author}: ${e.text}</p>`;
+                todo_list.append(a);
+            }
+        });
+    </script>
+</body>
